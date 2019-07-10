@@ -16,6 +16,9 @@ Route::get('/test/redis/:task_num_','app\index\controller\Index@testRedis');
 Route::get('/test/model','app\index\controller\Index@testModel')->middleware('auth');
 Route::post('/login','app\ucenter\controller\Login@login');
 Route::get('/getUserInfo','app\ucenter\controller\UserInfo@getUserInformation');
+Route::group('api', function (){
+    Route::get('/hello/:name','app\index\controller\Index@hello')->middleware('cors');
+});
 return [
 
 ];

@@ -16,5 +16,6 @@ return [
     // 默认中间件命名空间
     'default_namespace' => 'app\\http\\middleware\\',
     // 接口权限验证中间件
-    'auth' => app\http\middleware\Auth::class
+    'auth' => app\http\middleware\Auth::class,
+    'cors' => app\http\middleware\Cors::class
 ];
