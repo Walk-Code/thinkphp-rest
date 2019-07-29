@@ -42,20 +42,21 @@ class RestResponseEntityExceptionHandler extends Handle {
     public function render(Exception $e) {
         // 请求异常
         if ($e instanceof HttpException && request()->isAjax()) {
-            return ResponseHelper::response($e->getStatusCode(),$e->getMessage(), []);
+            return ResponseHelper::response($e->getStatusCode(), $e->getMessage(), []);
         }
 
         // 参数验证错误
         if ($e instanceof ValidateException) {
             //return response($e->getMessage(), 422,[],'json');
-            return ResponseHelper::response(422,$e->getMessage(), []);
+            return ResponseHelper::response(422, $e->getMessage(), []);
         }
 
         // 业务异常
         if ($e instanceof BussinessException) {
-            return ResponseHelper::response($e->getCode(),$e->getMessage(), $e->getData());
+            return ResponseHelper::response($e->getCode(), $e->getMessage(), $e->getData());
         }
 
-        return parent::render($e);
+        return ResponseHelper::response(500, $e->getMessage(), []);
+        /*return parent::render($e);*/
     }
 }
